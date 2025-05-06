@@ -7,7 +7,7 @@ class AllBooksCubitInitial extends AllBooksCubitState {}
 class AllBooksCubitLoading extends AllBooksCubitState {}
 
 class AllBooksCubitSuccess extends AllBooksCubitState {
-  final List<Books> books;
+  final Books books;
   AllBooksCubitSuccess(this.books);
 }
 

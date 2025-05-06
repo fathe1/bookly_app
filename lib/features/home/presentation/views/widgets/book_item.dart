@@ -1,8 +1,8 @@
-import 'package:bookly_app/features/home/data/books/books.dart';
+import 'package:bookly_app/features/home/data/books/item.dart';
 import 'package:flutter/material.dart';
 
 class BookItem extends StatelessWidget {
-  final Books book;
+  final Item book;
 
   const BookItem({super.key, required this.book});
 
@@ -14,10 +14,10 @@ class BookItem extends StatelessWidget {
         width: 150,
         height: 224,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(25),
           image: DecorationImage(
             image: NetworkImage(
-              book.items?.first.volumeInfo?.imageLinks?.thumbnail ??
+              book.volumeInfo?.imageLinks?.thumbnail ??
                   "https://books.google.com/books/content?id=1g0kEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             ),
             fit: BoxFit.cover,

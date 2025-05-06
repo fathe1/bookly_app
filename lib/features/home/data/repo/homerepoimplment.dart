@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/networking/apiservice.dart';
 import 'package:dartz/dartz.dart';
 
@@ -9,14 +11,15 @@ class Homerepoimplment implements HomeRepo {
 
   Homerepoimplment({required this.apiService});
   @override
-  Future<Either<String, List<Books>>> fetchAllBooks() async {
+  Future<Either<String, Books>> fetchAllBooks() async {
     try {
-      var data = await apiService.get(
+      final data = await apiService.get(
           baseUrl: "https://www.googleapis.com/books/v1/volumes?q=20");
       if (data != null) {
-        List<Books> books = (data['items'] as List)
-            .map((item) => Books.fromJson(item))
-            .toList();
+        // log("ListData: ${data.toString()}");
+        Books books = Books.fromJson(data);
+
+        log("ListBook: ${books.toString()}");
         return Right(books);
       } else {
         return Left("No data found");
@@ -27,14 +30,12 @@ class Homerepoimplment implements HomeRepo {
   }
 
   @override
-  Future<Either<String, List<Books>>> fetchBestsellerBooks() async {
+  Future<Either<String, Books>> fetchBestsellerBooks() async {
     try {
-      var data = await apiService.get(
+      final data = await apiService.get(
           baseUrl: "https://www.googleapis.com/books/v1/volumes?q=20");
       if (data != null) {
-        List<Books> books = (data['items'] as List)
-            .map((item) => Books.fromJson(item))
-            .toList();
+        Books books = Books.fromJson(data);
         return Right(books);
       } else {
         return Left("No data found");
